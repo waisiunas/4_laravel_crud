@@ -45,27 +45,37 @@ class UserController extends Controller
 
         $is_created = User::create($data);
 
-        if($is_created) {
-            return back()->with(['success' => 'Magic has been spelled!']);
-        } else {
-            return back()->with(['failure' => 'Magic has become shopper!']);
-        }
+        return $is_created? back()->with(['success' => 'Magic has been spelled!']) : back()->with(['failure' => 'Magic has become shopper!']);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(User $user)
     {
-        //
+        return view('user.edit', [
+            'user' => $user,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, User $user)
     {
-        //
+        $request->validate([
+            'name' => ['required'],
+            'email' => ['required', 'unique:users,email,' . $user->id . ',id'],
+        ]);
+
+        $data = [
+            'name' => $request->name,
+            'email' => $request->email,
+        ];
+
+        $is_updated = $user->update($data);
+
+        return $is_updated ? back()->with(['success' => 'Magic has been spelled!']) : back()->with(['failure' => 'Magic has become shopper!']);
     }
 
     /**
@@ -75,10 +85,6 @@ class UserController extends Controller
     {
         $is_deleted = $user->delete();
 
-        if($is_deleted) {
-            return back()->with(['success' => 'Magic has been spelled!']);
-        } else {
-            return back()->with(['failure' => 'Magic has become shopper!']);
-        }
+        return $is_deleted ? back()->with(['success' => 'Magic has been spelled!']) : back()->with(['failure' => 'Magic has become shopper!']);
     }
 }

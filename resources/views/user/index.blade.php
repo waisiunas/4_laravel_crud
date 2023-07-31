@@ -48,7 +48,7 @@
                                             <td>{{ $user->name }}</td>
                                             <td>{{ $user->email }}</td>
                                             <td>
-                                                <a href="" class="btn btn-primary">Edit</a>
+                                                <a href="{{ route('user.edit', $user) }}" class="btn btn-primary">Edit</a>
                                                 <a href="{{ route('user.destroy', $user) }}" class="btn btn-danger">Delete</a>
                                             </td>
                                         </tr>
