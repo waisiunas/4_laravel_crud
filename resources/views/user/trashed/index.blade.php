@@ -19,12 +19,10 @@
 
                         <div class="row">
                             <div class="col-6">
-                                <h3 class="m-0">Users</h3>
+                                <h3 class="m-0">Deleted Users</h3>
                             </div>
                             <div class="col-6 text-end">
-                                <a href="{{ route('trashed.users') }}" class="btn btn-outline-primary">Deleted Users</a>
-
-                                <a href="{{ route('user.create') }}" class="btn btn-outline-primary">Add User</a>
+                                <a href="{{ route('users') }}" class="btn btn-outline-primary">View Users</a>
                             </div>
                         </div>
                     </div>
@@ -50,8 +48,8 @@
                                             <td>{{ $user->name }}</td>
                                             <td>{{ $user->email }}</td>
                                             <td>
-                                                <a href="{{ route('user.edit', $user) }}" class="btn btn-primary">Edit</a>
-                                                <a href="{{ route('user.destroy', $user) }}" class="btn btn-danger">Delete</a>
+                                                <a href="{{ route('user.recover', $user->id) }}" class="btn btn-success">Restore</a>
+                                                <a href="{{ route('user.delete', $user) }}" class="btn btn-danger">Delete</a>
                                             </td>
                                         </tr>
                                     @endforeach

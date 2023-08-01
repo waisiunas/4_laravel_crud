@@ -45,7 +45,7 @@ class UserController extends Controller
 
         $is_created = User::create($data);
 
-        return $is_created? back()->with(['success' => 'Magic has been spelled!']) : back()->with(['failure' => 'Magic has become shopper!']);
+        return $is_created ? back()->with(['success' => 'Magic has been spelled!']) : back()->with(['failure' => 'Magic has become shopper!']);
     }
 
     /**
@@ -85,6 +85,6 @@ class UserController extends Controller
     {
         $is_deleted = $user->delete();
 
-        return $is_deleted ? back()->with(['success' => 'Magic has been spelled!']) : back()->with(['failure' => 'Magic has become shopper!']);
+        return $is_deleted ? back()->with(['success' => 'User has been temporarily deleted!']) : back()->with(['failure' => 'Magic has become shopper!']);
     }
 }

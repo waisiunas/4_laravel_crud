@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserTrashedController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,4 +22,6 @@ Route::get('/user/{user}/edit', [UserController::class, 'edit'])->name('user.edi
 Route::post('/user/{user}/edit', [UserController::class, 'update']);
 Route::get('/user/{user}/destroy', [UserController::class, 'destroy'])->name('user.destroy');
 
-
+Route::get('/trashed/users', [UserTrashedController::class, 'index'])->name('trashed.users');
+Route::get('user/{id}/recover', [UserTrashedController::class, 'recover'])->name('user.recover');
+Route::get('user/{id}/delete', [UserTrashedController::class, 'delete'])->name('user.delete');
